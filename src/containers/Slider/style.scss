@@ -39,6 +39,10 @@
         color: $primary;
       }
     }
+    &__pagination {
+      display: flex;
+      flex-direction: row-reverse;
+    } 
     &__description {
       left: 0;
       bottom: 50px;
@@ -75,6 +79,7 @@
         font-weight: bold;
       }
     }
+   
   }
 }
 
