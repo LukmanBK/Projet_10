@@ -20,13 +20,12 @@ const EventList = () => {
     return false;
   });
 
-
   const paginatedEvents = (filteredEvents ?? []).filter((event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
       PER_PAGE * currentPage > index
     ) {
-    return true;
+      return true;
     }
     return false;
   });
