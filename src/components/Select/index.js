@@ -12,16 +12,14 @@ const Select = ({
   titleEmpty,
   label,
   type = "normal",
- 
 }) => {
- 
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
     onChange(newValue);
     setValue(newValue);
-    setCollapsed(newValue);
-   };
+    setCollapsed(!collapsed);
+  };
 
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
@@ -91,7 +89,7 @@ Select.propTypes = {
   titleEmpty: PropTypes.bool,
   label: PropTypes.string,
   type: PropTypes.string,
-}
+};
 
 Select.defaultProps = {
   onChange: () => null,

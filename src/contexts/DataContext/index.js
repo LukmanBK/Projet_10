@@ -26,22 +26,25 @@ export const DataProvider = ({ children }) => {
       setError(err);
     }
   }, []);
+
+  const events = data?.events;
+  const sortedEvents = events?.sort((evtA, evtB) =>
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
+  );
+  const last = sortedEvents?.[0];
+
   useEffect(() => {
     if (data) return;
     getData();
   });
-  
+
   return (
     <DataContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         data,
         error,
-        last:
-        data &&
-        data.events?.sort((evtA, evtB) =>
-        new Date (evtA.date) > new Date(evtB.date) ? -1 : 1
-        ) [0],
+        last,
       }}
     >
       {children}
@@ -51,7 +54,7 @@ export const DataProvider = ({ children }) => {
 
 DataProvider.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
 export const useData = () => useContext(DataContext);
 
