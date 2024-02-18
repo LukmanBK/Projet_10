@@ -27,10 +27,15 @@ export const DataProvider = ({ children }) => {
     }
   }, []);
 
+  // extraction des évènements
   const events = data?.events;
+
+// tri des evenements
   const sortedEvents = events?.sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
+
+  // selection de l'évènement le plus récent
   const last = sortedEvents?.[0];
 
   useEffect(() => {
@@ -44,7 +49,7 @@ export const DataProvider = ({ children }) => {
       value={{
         data,
         error,
-        last,
+        last, // passage de last au context
       }}
     >
       {children}
